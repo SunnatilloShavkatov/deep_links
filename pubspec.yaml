@@ -12,6 +12,8 @@ dependencies:
 
   # get state manager
   get: ^4.1.4
+  # provider state manager
+  provider: ^5.0.0
 
 dev_dependencies:
   flutter_test:
