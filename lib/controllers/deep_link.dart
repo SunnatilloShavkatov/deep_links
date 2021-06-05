@@ -7,10 +7,12 @@ abstract class Bloc {
 
 class DeepLink extends Bloc {
   //Event Channel creation
-  static const stream = const EventChannel('https.mobile.udevs.uz/events');
+  static const stream = const EventChannel('https.mobile.deeplink.uz/events');
 
   //Method channel creation
-  static const platform = const MethodChannel('https.mobile.udevs.uz/channel');
+  static const platform = const MethodChannel(
+    'https.mobile.deeplink.uz/channel',
+  );
 
   StreamController<String> _stateController = StreamController();
 

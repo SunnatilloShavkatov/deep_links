@@ -1,4 +1,4 @@
-import 'package:deep_links/controllers/deep_link_controller.dart';
+import 'package:deep_links/controllers/deep_link.dart';
 import 'package:deep_links/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,21 +17,19 @@ class HomePage extends GetView<HomeController> {
         elevation: 0.5,
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           StreamBuilder<String>(
             stream: _bloc.state,
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
-                return Container(
-                  child: Center(child: Text('No deep link was used  ')),
-                );
+                return Center(child: Text('No deep link was used  '));
               } else {
-                return Container(
-                  child: Center(
-                    child: Padding(
-                      padding: EdgeInsets.all(20.0),
-                      child: Text('Redirected: ${snapshot.data}'),
-                    ),
+                return Center(
+                  child: Padding(
+                    padding: EdgeInsets.all(20.0),
+                    child: Text('Redirected: ${snapshot.data}'),
                   ),
                 );
               }

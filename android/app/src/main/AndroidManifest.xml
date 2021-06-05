@@ -32,7 +32,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="mobile.udevs.uz"
+                    android:host="mobile.deeplink.uz"
                     android:scheme="https" />
             </intent-filter>
         </activity>

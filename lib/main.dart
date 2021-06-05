@@ -1,4 +1,4 @@
-import 'package:deep_links/controllers/deep_link_controller.dart';
+import 'package:deep_links/controllers/deep_link.dart';
 import 'package:deep_links/core/constants/app_theme.dart';
 import 'package:deep_links/routes/app_pages.dart';
 import 'package:deep_links/ui/home_page.dart';
