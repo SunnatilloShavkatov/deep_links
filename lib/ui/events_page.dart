@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 class EventsPage extends StatelessWidget {
   final String text;
 
-  const EventsPage({Key key, this.text}) : super(key: key);
+  const EventsPage({Key? key, required this.text}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

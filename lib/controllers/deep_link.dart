@@ -21,9 +21,9 @@ class DeepLink extends Bloc {
   Sink<String> get stateSink => _stateController.sink;
 
   //Adding the listener into contructor
-  DeepLink() {
+  DeepLink(String url) {
     //Checking application start by deep link
-    startUri().then(_onRedirected);
+    startUri().then(_onRedirected(url));
     //Checking broadcast stream, if deep link was clicked in opened appication
     stream.receiveBroadcastStream().listen((d) => _onRedirected(d));
   }
@@ -39,7 +39,7 @@ class DeepLink extends Bloc {
     _stateController.close();
   }
 
-  Future<String> startUri() async {
+  Future<String?> startUri() async {
     try {
       return platform.invokeMethod('initialLink');
     } on PlatformException catch (e) {
