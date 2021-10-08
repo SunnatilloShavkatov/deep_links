@@ -1,13 +1,20 @@
-import 'package:deep_links/controllers/deep_link.dart';
-import 'package:deep_links/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:provider/provider.dart';
 
-class HomePage extends GetView<HomeController> {
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    DeepLink _bloc = Provider.of<DeepLink>(context);
+    String? data = Get.arguments;
     return Scaffold(
       backgroundColor: Color(0xFFF9F9FD),
       appBar: AppBar(
@@ -16,26 +23,11 @@ class HomePage extends GetView<HomeController> {
         centerTitle: true,
         elevation: 0.5,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          StreamBuilder<String>(
-            stream: _bloc.state,
-            builder: (context, snapshot) {
-              if (!snapshot.hasData) {
-                return Center(child: Text('No deep link was used  '));
-              } else {
-                return Center(
-                  child: Padding(
-                    padding: EdgeInsets.all(20.0),
-                    child: Text('Redirected: ${snapshot.data}'),
-                  ),
-                );
-              }
-            },
-          )
-        ],
+      body: Center(
+        child: Padding(
+          padding: EdgeInsets.all(20.0),
+          child: Text('Redirected: $data'),
+        ),
       ),
     );
   }
