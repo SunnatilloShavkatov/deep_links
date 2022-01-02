@@ -14,15 +14,15 @@ import io.flutter.plugins.GeneratedPluginRegistrant
 
 class MainActivity : FlutterActivity() {
 
-    private val CHANNEL = "https.mobile.deeplink.uz/channel"
-    private val EVENTS = "https.mobile.deeplink.uz/events"
+    private val channel = "https.mobile.deeplink.uz/channel"
+    private val events = "https.mobile.deeplink.uz/events"
     private var startString: String? = null
     private var linksReceiver: BroadcastReceiver? = null
 
     override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
         GeneratedPluginRegistrant.registerWith(flutterEngine)
 
-        MethodChannel(flutterEngine.dartExecutor, CHANNEL).setMethodCallHandler { call, result ->
+        MethodChannel(flutterEngine.dartExecutor, channel).setMethodCallHandler { call, result ->
             if (call.method == "initialLink") {
                 if (startString != null) {
                     result.success(startString)
@@ -30,7 +30,7 @@ class MainActivity : FlutterActivity() {
             }
         }
 
-        EventChannel(flutterEngine.dartExecutor, EVENTS).setStreamHandler(
+        EventChannel(flutterEngine.dartExecutor, events).setStreamHandler(
             object : EventChannel.StreamHandler {
                 override fun onListen(args: Any?, events: EventSink) {
                     linksReceiver = createChangeReceiver(events)
@@ -46,7 +46,7 @@ class MainActivity : FlutterActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val intent = getIntent()
+        val intent = intent
         startString = intent.data?.toString()
     }
 
@@ -57,7 +57,7 @@ class MainActivity : FlutterActivity() {
         }
     }
 
-    fun createChangeReceiver(events: EventSink): BroadcastReceiver? {
+    fun createChangeReceiver(events: EventSink): BroadcastReceiver {
         return object : BroadcastReceiver() {
             override fun onReceive(
                 context: Context,
